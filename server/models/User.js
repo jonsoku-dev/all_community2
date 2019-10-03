@@ -1,22 +1,21 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const postSchema = new Schema(
+const userSchema = new Schema(
   {
-    title: {
+    name: {
       type: String,
       required: true,
     },
-    description: {
+    email: {
       type: String,
       required: true,
     },
-    author: {
-      type: mongoose.Schema.Types.ObjectId,
+    password: {
+      type: String,
       required: true,
-      ref: 'User',
     },
-    view: {
+    login_count: {
       type: Number,
       default: 0,
     },
@@ -26,5 +25,5 @@ const postSchema = new Schema(
   },
 );
 
-const Post = mongoose.model('Post', postSchema);
-module.exports = Post;
+const User = mongoose.model('User', userSchema);
+module.exports = User;

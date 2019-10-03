@@ -12,11 +12,10 @@ exports.getPosts = async (req, res, next) => {
 
 exports.createPost = async (req, res, next) => {
   const { title, description } = req.body;
-  const AUTHOR = 'admin_test';
   const newPost = new Post({
     title,
     description,
-    author: AUTHOR,
+    author: req.user,
   });
   try {
     const result = await newPost.save();

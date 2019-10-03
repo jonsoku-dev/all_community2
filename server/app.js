@@ -4,6 +4,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const app = express();
 const dbConnect = require('./db/dbConnect');
+const userRouter = require('./routes/user');
 const postRouter = require('./routes/post');
 
 const PORT = process.env.PORT;
@@ -11,6 +12,7 @@ const PORT = process.env.PORT;
 app.use(cors());
 app.use(bodyParser.json());
 
+app.use('/api/user', userRouter);
 app.use('/api/post', postRouter);
 
 dbConnect()
