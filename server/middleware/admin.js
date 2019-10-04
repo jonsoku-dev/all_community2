@@ -1,7 +1,10 @@
 const User = require('../models/User');
+const jwt = require('jsonwebtoken');
 
 const auth = async (req, res, next) => {
   try {
+    const token = req.header('Authorization').replace('Bearer ', '');
+    const decoded = jwt.verify(token, 'jong');
     const user = await User.findById('5d9687ddfe525a2cc082f283').select('_id');
     req.user = user;
     next();

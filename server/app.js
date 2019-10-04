@@ -4,17 +4,19 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const app = express();
 const dbConnect = require('./db/dbConnect');
-const userRouter = require('./routes/user');
-const postRouter = require('./routes/post');
+const apiRouter = require('./routes');
 
+//! environment
 const PORT = process.env.PORT;
 
+//! middleware
 app.use(cors());
 app.use(bodyParser.json());
 
-app.use('/api/user', userRouter);
-app.use('/api/post', postRouter);
+//! api Router
+app.use('/api', apiRouter);
 
+//! DB + SERVER Connector
 dbConnect()
   .then(
     app.listen(PORT, () => {
