@@ -9,7 +9,7 @@ const admin = async (req, res, next) => {
     return res.status(401).json({ msg: '토큰이 존재하지 않습니다. ' });
   }
   try {
-    const decoded = jwt.verify(token, JWT_SECRET_KEY);
+    const decoded = await jwt.verify(token, JWT_SECRET_KEY);
     const adminUser = decoded.user.id;
     if (adminUser !== ADMIN_ID_1) {
       return res.status(401).json({ msg: '일반 유저입니다. 권한이 없습니다.' });
