@@ -12,13 +12,13 @@ const DeleteBtn = styled.button`
 `;
 
 const CategoryContainer = ({ history, getCategories, createCategory, deleteCategory, category: { categories, loading } }) => {
-  useEffect(() => {
-    getCategories();
-  }, [getCategories]);
-
   const [values, setValues] = useState({
     name: '',
   });
+
+  useEffect(() => {
+    getCategories();
+  }, [values]);
 
   const { name } = values;
 
@@ -56,7 +56,6 @@ const CategoryContainer = ({ history, getCategories, createCategory, deleteCateg
     ));
   };
 
-  console.log(categories);
   return (
     <>
       {renderCreateForm()}

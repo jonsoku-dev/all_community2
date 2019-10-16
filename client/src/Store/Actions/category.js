@@ -85,10 +85,10 @@ export const putCategory = (categoryId, formData) => async dispatch => {
 
 export const deleteCategory = categoryId => async dispatch => {
   try {
-    const res = await axios.delete(`http://localhost:4000/api/category/${categoryId}`);
+    await axios.delete(`http://localhost:4000/api/category/${categoryId}`);
     dispatch({
       type: DELETE_CATEGORY,
-      payload: res.data,
+      payload: categoryId,
     });
   } catch (err) {
     dispatch({

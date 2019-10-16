@@ -11,8 +11,8 @@ import GlobalAlert from './layout/GlobalAlert';
 import setAuthToken from '../util/setAuthToken';
 // Redux
 import { Provider } from 'react-redux';
-import store from '../Store';
 import { loadUser } from '../Store/Actions/auth';
+import store from '../Store/index';
 // Routes
 import { MainContainer } from '../Routes/Main';
 import { LoginContainer } from '../Routes/Login';

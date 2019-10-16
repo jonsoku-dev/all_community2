@@ -29,9 +29,9 @@ export default (state = initialState, action) => {
         error: payload,
       };
     case DELETE_CATEGORY:
-      console.log(payload);
       return {
         ...state,
+        categories: state.categories.filter(c => c._id !== payload),
         loading: false,
       };
     default:
