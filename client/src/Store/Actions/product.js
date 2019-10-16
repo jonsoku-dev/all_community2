@@ -1,4 +1,5 @@
 import axios from 'axios';
+import queryString from 'query-string';
 import { setAlert } from './alert';
 import { PRODUCT_FAIL, GET_FILTERED_PRODUCTS } from './types';
 
@@ -36,5 +37,16 @@ export const getFilteredProducts = (skip, limit, filters = {}) => async dispatch
     //   type: PRODUCT_FAIL,
     //   payload: { msg: err.response.statusText, status: err.response.status },
     // });
+  }
+};
+
+export const getSearchProducts = params => async dispatch => {
+  const query = queryString.stringify(params);
+  console.log(query);
+  try {
+    const res = await axios.post(`http://localhost:4000/api/product/by/search?${query}`);
+    return res;
+  } catch (err) {
+    console.error(err);
   }
 };

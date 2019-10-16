@@ -21,7 +21,11 @@ const fileStorage = multer.diskStorage({
   },
 });
 const fileFilter = (req, file, cb) => {
-  if (file.mimetype === 'image/png' || file.mimetype === 'image/jpg' || file.mimetype === 'image/jpeg') {
+  if (
+    file.mimetype === 'image/png' ||
+    file.mimetype === 'image/jpg' ||
+    file.mimetype === 'image/jpeg'
+  ) {
     cb(null, true);
   } else {
     cb(null, false);
@@ -29,7 +33,7 @@ const fileFilter = (req, file, cb) => {
 };
 
 //! static folder
-app.use(path.resolve(__dirname, './', 'images'), express.static(path.join(__dirname, 'images')));
+app.use(path.resolve(__dirname, '/', 'images'), express.static(path.join(__dirname, 'images')));
 
 //! middleware
 app.use(cors());

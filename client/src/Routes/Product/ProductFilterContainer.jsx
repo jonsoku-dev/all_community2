@@ -7,7 +7,7 @@ import Checkbox from './Checkbox';
 import RadioBox from './RadioBox';
 import { prices } from './fixedPrices';
 import { getFilteredProducts } from '../../Store/Actions/product';
-import Card from './Card.jsx';
+import Card from './Card.js';
 
 const Wrapper = styled.div`
   display: grid;
@@ -23,50 +23,57 @@ const Main = styled.div`
   grid-gap: 1rem;
 `;
 
-const ProductMainContainer = ({ getCategories, getFilteredProducts, category: { categories, loading }, product: { products } }) => {
-  useEffect(() => {
-    getCategories();
-    getFilteredProducts(skip, limit, myFilters.filters);
-  }, []);
-
+const ProductFilterContainer = ({
+  getCategories,
+  getFilteredProducts,
+  category: { categories, loading },
+  product: { products },
+}) => {
   const [myFilters, setMyFilters] = useState({
-    filters: { category: [], price: [] },
+    filters: { category: [], price: [], name: '' },
   });
+  const [name, setName] = useState('');
   const [limit, setLimit] = useState(6);
   const [skip, setSkip] = useState(0);
   const [size, setSize] = useState(0);
-  const [filteredResulted, setFilteredResulted] = useState({});
+  const [filteredResulted, setFilteredResulted] = useState(0);
+
+  useEffect(() => {
+    getCategories();
+    loadFilteredResult();
+  }, []);
 
   const handleFilters = (filters, filterBy) => {
-    // console.log('SHOP', filter, filterBy);
     const newFilters = { ...myFilters };
     newFilters.filters[filterBy] = filters;
 
     if (filterBy === 'price') {
       let priceValues = handlePrice(filters);
       newFilters.filters[filterBy] = priceValues;
+    } else if (filterBy === 'name') {
+      newFilters.filters[filterBy] = name;
     }
     loadFilteredResult(myFilters.filters);
     setMyFilters(newFilters);
   };
 
-  const loadFilteredResult = newFilters => {
-    // console.log(newFilters);
-    getFilteredProducts(skip, limit, newFilters).then(data => {
-      setSize(data.size);
-    });
-    // setSize(products.data.size);
-    // setSize(products.size);
-    // setSkip(0);
+  const loadFilteredResult = async newFilters => {
+    const response = await getFilteredProducts(skip, limit, newFilters);
+    setSize(response.size);
+    setFilteredResulted(response.data);
   };
 
-  const loadMore = () => {
+  const loadMore = async () => {
     let toSkip = skip + limit;
-    // console.log(newFilters);
-    getFilteredProducts(toSkip, limit, myFilters.filters);
-    setFilteredResulted(products);
-    setSize(products.data.size);
+    console.log(toSkip);
+    const response = await getFilteredProducts(toSkip, limit, myFilters.filters);
+    setFilteredResulted([...filteredResulted, ...response.data]);
+    setSize(response.size);
     setSkip(0);
+  };
+
+  const loadMoreButton = () => {
+    return size > 0 && size >= limit && <button onClick={loadMore}>loadMore</button>;
   };
 
   const handlePrice = value => {
@@ -80,26 +87,42 @@ const ProductMainContainer = ({ getCategories, getFilteredProducts, category: { 
     }
     return array;
   };
-  console.log(products, 'productmaincontainer');
+
   return (
     <Wrapper>
       <LeftSideBar>
         <h4>Filter by categories</h4>
         <ul>
-          <Checkbox categories={categories} handleFilters={filters => handleFilters(filters, 'category')}></Checkbox>
+          <Checkbox
+            categories={categories}
+            handleFilters={filters => handleFilters(filters, 'category')}
+          ></Checkbox>
         </ul>
 
         <h4>Filter by prices</h4>
         <ul>
-          <RadioBox prices={prices} handleFilters={filters => handleFilters(filters, 'price')}></RadioBox>
+          <RadioBox
+            prices={prices}
+            handleFilters={filters => handleFilters(filters, 'price')}
+          ></RadioBox>
         </ul>
       </LeftSideBar>
-      <Main>{!loading && products && products.data && products.data.map((product, i) => <Card key={i} product={product}></Card>)}</Main>
+      <Main>
+        {!loading &&
+          filteredResulted &&
+          filteredResulted.map(product => <Card key={product._id} product={product}></Card>)}
+        {loadMoreButton()}
+        {/* {JSON.stringify(filteredResulted)} */}
+        {/* {!loading &&
+          products &&
+          products.data &&
+          products.data.map((product, i) => <Card key={i} product={product}></Card>)} */}
+      </Main>
     </Wrapper>
   );
 };
 
-ProductMainContainer.propTypes = {
+ProductFilterContainer.propTypes = {
   getCategories: PropTypes.func.isRequired,
 };
 
@@ -111,4 +134,4 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   { getCategories, getFilteredProducts },
-)(ProductMainContainer);
+)(ProductFilterContainer);

@@ -3,7 +3,7 @@ import Signup from './Signup/index';
 import Login from './Login/index';
 import Post from './Post/index';
 import { CategoryCreateContainer, CategoryPutContainer } from './Category';
-import { ProductCreateContainer, ProductMainContainer } from './Product';
+import { ProductCreateContainer, ProductFilterContainer } from './Product';
 
 export {
   Main,
@@ -13,5 +13,5 @@ export {
   CategoryCreateContainer,
   CategoryPutContainer,
   ProductCreateContainer,
-  ProductMainContainer,
+  ProductFilterContainer,
 };

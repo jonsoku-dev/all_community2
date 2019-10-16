@@ -1,4 +1,5 @@
+import ProductHomeContainer from './ProductHomeContainer';
 import ProductCreateContainer from './ProductCreateContainer';
-import ProductMainContainer from './ProductMainContainer';
+import ProductFilterContainer from './ProductFilterContainer';
 
-export { ProductCreateContainer, ProductMainContainer };
+export { ProductHomeContainer, ProductCreateContainer, ProductFilterContainer };

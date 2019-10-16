@@ -51,6 +51,7 @@
 - [ ] Product View Page
 - [ ] Product Create Page
 - [ ] Product Edit(put) Page
+- [ ] load more button fix! (지금은 component state로만 움직이지만, redux products를 바꿔야함...)
 
 ### Cart
 
@@ -76,6 +77,26 @@
 ### 1:1 Chat (Socket.io)
 
 - [ ] 아직 미구상
+
+### Messanger
+
+- [ ] 아직 미구상
+
+### My Page
+
+- [ ] 아직 미구상
+
+### Admin Page
+
+- [ ] 아직 미구상
+
+## Function
+
+### 신고기능
+
+### 태그
+
+### 차단
 
 ## Docker
 

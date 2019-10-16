@@ -49,7 +49,10 @@ exports.getProducts = async (req, res, next) => {
 exports.getProductsRelated = async (req, res, next) => {
   let limit = req.query.limit ? parseInt(req.query.limit) : 6;
   try {
-    const productsRelated = await Product.find({ _id: { $ne: req.product }, category: req.product.category })
+    const productsRelated = await Product.find({
+      _id: { $ne: req.product },
+      category: req.product.category,
+    })
       .limit(limit)
       .populate('category', '_id name')
       .exec();
@@ -107,7 +110,7 @@ exports.getProductsBySearch = async (req, res, next) => {
         }
       }
     }
-    // console.log(findArgs, 'findArgs');
+    console.log(findArgs, 'findArgs');
     const products = await Product.find(findArgs)
       .populate('category')
       .sort([[sortBy, order]])
