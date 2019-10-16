@@ -14,6 +14,7 @@
 - [ ] Code Refactoring
 - [ ] 모든 api async/await 로 변경
 - [ ] category 삭제하면 product도 삭제되게 만들어야함
+- [ ] redis를 활용할 방법을 모색... 어따가쓰지....
 
 ## page
 
@@ -75,3 +76,11 @@
 ### 1:1 Chat (Socket.io)
 
 - [ ] 아직 미구상
+
+## Docker
+
+- [ ] 프로젝트가 완성되면 docker-compose.yml 작성하기
+
+## Server
+
+- [ ] aws로 deploy
