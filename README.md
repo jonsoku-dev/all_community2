@@ -51,6 +51,12 @@
 - [ ] Product Create Page
 - [ ] Product Edit(put) Page
 
+### Cart
+
+- [ ] Cart page
+- [ ] file download ( receipt (pdf or excel) )
+- [ ] Billing system (how? i just know paypal)
+
 ### Post ( -> Board로 변경 예정 )
 
 - [ ] All Posts View Page
@@ -61,6 +67,10 @@
 ### Contact
 
 - [ ] Google Map API
+
+### Tamastudy Calendar
+
+- [ ] Calendar Page (todo, schedule etc..)
 
 ### 1:1 Chat (Socket.io)
 
