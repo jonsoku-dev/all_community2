@@ -3,6 +3,13 @@ const Schema = mongoose.Schema;
 
 const postSchema = new Schema(
   {
+    user: {
+      type: Schema.Types.ObjectId,
+      ref: 'User',
+    },
+    name: {
+      type: String,
+    },
     title: {
       type: String,
       required: true,
@@ -11,15 +18,36 @@ const postSchema = new Schema(
       type: String,
       required: true,
     },
-    author: {
-      type: mongoose.Schema.Types.ObjectId,
-      required: true,
-      ref: 'User',
-    },
     view: {
       type: Number,
       default: 0,
     },
+    likes: [
+      {
+        user: {
+          type: Schema.Types.ObjectId,
+          ref: 'user',
+        },
+      },
+    ],
+    comments: [
+      {
+        user: {
+          type: Schema.Types.ObjectId,
+          ref: 'User',
+        },
+        text: {
+          type: String,
+          required: true,
+        },
+        name: {
+          type: String,
+        },
+      },
+      {
+        timestamps: { createdAt: true, updatedAt: true },
+      },
+    ],
   },
   {
     timestamps: { createdAt: true, updatedAt: true },

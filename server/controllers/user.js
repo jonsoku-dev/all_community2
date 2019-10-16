@@ -12,20 +12,23 @@ exports.createUser = async (req, res, next) => {
     if (user) {
       res.status(400).json({ errors: [{ msg: 'User already exists!' }] });
     }
-    const salt = await bcrypt.genSalt(10);
-    console.log(salt);
-    const bcryptPassword = await bcrypt.hash(password, salt);
-    const newUser = new User({
+
+    user = new User({
       name,
       email,
-      password: bcryptPassword,
+      password,
     });
 
-    await newUser.save();
+    const salt = await bcrypt.genSalt(10);
+
+    user.password = await bcrypt.hash(password, salt);
+
+    await user.save();
 
     const payload = {
       user: {
         id: user.id,
+        role: user.role,
       },
     };
 
