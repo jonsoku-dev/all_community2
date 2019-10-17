@@ -10,6 +10,12 @@ const initialState = {
 export default (state = initialState, action) => {
   const { type, payload } = action;
   switch (type) {
+    case CREATE_CATEGORY:
+      return {
+        ...state,
+        categories: [payload, ...state.categories],
+        loading: false,
+      };
     case GET_CATEGORIES:
       return {
         ...state,
@@ -22,17 +28,17 @@ export default (state = initialState, action) => {
         category: payload,
         loading: false,
       };
-    case CATEGORY_FAIL:
-      return {
-        ...state,
-        loading: false,
-        error: payload,
-      };
     case DELETE_CATEGORY:
       return {
         ...state,
         categories: state.categories.filter(c => c._id !== payload),
         loading: false,
+      };
+    case CATEGORY_FAIL:
+      return {
+        ...state,
+        loading: false,
+        error: payload,
       };
     default:
       return state;

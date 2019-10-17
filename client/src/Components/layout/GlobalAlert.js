@@ -6,7 +6,6 @@ const GlobalAlert = ({ alerts }) =>
   alerts !== null &&
   alerts.length > 0 &&
   alerts.map(alert => {
-    console.log(alert, 'alert');
     return (
       <div key={alert.id} className={`alert alert-${alert.alertTypes}`}>
         {alert.msg}

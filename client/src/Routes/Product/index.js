@@ -1,5 +1,5 @@
 import ProductHomeContainer from './ProductHomeContainer';
-import ProductCreateContainer from './ProductCreateContainer';
 import ProductFilterContainer from './ProductFilterContainer';
+import ProductCreateContainer from './ProductCreateContainer.jsx';
 
-export { ProductHomeContainer, ProductCreateContainer, ProductFilterContainer };
+export { ProductCreateContainer, ProductHomeContainer, ProductFilterContainer };

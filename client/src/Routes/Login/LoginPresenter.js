@@ -111,7 +111,6 @@ const NewUser = styled(Link)`
 `;
 
 const LoginPresenter = ({ email, password, handleInput, handleSubmit }) => {
-  console.log(email.length === 0 ? 'true' : 'false');
   return (
     <LoginForm>
       <form onSubmit={e => handleSubmit(e)}>
@@ -121,12 +120,7 @@ const LoginPresenter = ({ email, password, handleInput, handleSubmit }) => {
           <label email={email.length === 0 ? 'true' : 'false'}>Email or Phone Number</label>
         </Field>
         <Field>
-          <input
-            type="password"
-            value={password}
-            onChange={e => handleInput(e)}
-            name="password"
-          ></input>
+          <input type="password" value={password} onChange={e => handleInput(e)} name="password"></input>
           <label>Password</label>
           <span>Show</span>
         </Field>

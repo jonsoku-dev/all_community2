@@ -16,18 +16,12 @@ const Checkbox = ({ categories, handleFilters }) => {
       newCheckedCategoryId.splice(currentCategoryId, 1);
     }
     setChecked(newCheckedCategoryId);
-    console.log(newCheckedCategoryId);
     handleFilters(newCheckedCategoryId);
   };
 
   return categories.map((c, i) => (
     <li key={i}>
-      <input
-        onChange={handleToggle(c._id)}
-        id={c._id}
-        type="checkbox"
-        value={checked.indexOf(c._id === -1)}
-      ></input>
+      <input onChange={handleToggle(c._id)} id={c._id} type="checkbox" value={checked.indexOf(c._id === -1)}></input>
       <label htmlFor={c._id}>{c.name}</label>
     </li>
   ));

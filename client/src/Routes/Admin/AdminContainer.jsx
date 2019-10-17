@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, Route, Switch } from 'react-router-dom';
 import styled from 'styled-components';
 import { CategoryContainer } from '../Category';
-import { ProductCreateContainer } from '../Product';
+import ProductCreateContainer from '../Product/ProductCreateContainer';
 
 const Wrapper = styled.div`
   display: grid;

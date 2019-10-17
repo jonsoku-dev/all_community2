@@ -13,6 +13,7 @@ const {
   putProduct,
   getProductsBySearch,
   getPhoto,
+  getProductsSearch,
 } = require('../../../controllers/product');
 
 router.get('/', getProducts);
@@ -42,8 +43,8 @@ router.post(
   ],
   createProduct,
 );
+router.post('/search', getProductsSearch);
 router.post('/by/search', getProductsBySearch);
-
 router.put(
   '/:productId',
   [

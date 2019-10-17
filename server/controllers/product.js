@@ -126,6 +126,30 @@ exports.getProductsBySearch = async (req, res, next) => {
     res.status(500).send('Server Error!');
   }
 };
+/**
+ * 검색 결과
+ */
+exports.getProductsSearch = async (req, res, next) => {
+  try {
+    const query = {};
+    if (req.query.search) {
+      query.name = { $regex: req.query.search, $options: 'i' };
+    }
+    if (req.query.category && req.query.category != 'All') {
+      query.category = req.query.category;
+    }
+    // find the product based on query object with 2 properties
+    // search and category !
+    const SearchedProducts = await Product.find(query);
+    res.json({
+      size: SearchedProducts.length,
+      data: SearchedProducts,
+    });
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error!');
+  }
+};
 
 exports.createProduct = async (req, res, next) => {
   const { name, description, price, category, shipping, quantity } = req.body;

@@ -28,18 +28,10 @@ const LoginContainer = ({ login, isAuthenticated }) => {
 
   const handleSubmit = async e => {
     e.preventDefault();
-    console.log(email, password);
     login(email, password);
   };
 
-  return (
-    <LoginPresenter
-      email={email}
-      password={password}
-      handleInput={handleInput}
-      handleSubmit={handleSubmit}
-    />
-  );
+  return <LoginPresenter email={email} password={password} handleInput={handleInput} handleSubmit={handleSubmit} />;
 };
 
 LoginContainer.propTypes = {

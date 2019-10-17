@@ -19,11 +19,7 @@ import { LoginContainer } from '../Routes/Login';
 import { SignupContainer } from '../Routes/Signup';
 import { PostContainer } from '../Routes/Post';
 import { CategoryContainer, CategoryPutContainer } from '../Routes/Category';
-import {
-  ProductHomeContainer,
-  ProductCreateContainer,
-  ProductFilterContainer,
-} from '../Routes/Product';
+import { ProductHomeContainer, ProductCreateContainer, ProductFilterContainer } from '../Routes/Product';
 import { AdminContainer } from '../Routes/Admin';
 
 const Container = styled.div`

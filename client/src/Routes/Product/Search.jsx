@@ -5,7 +5,7 @@ import { getCategories } from '../../Store/Actions/category';
 import PropTypes from 'prop-types';
 import Card from './Card';
 
-const Search = ({ getCategories, getSearchProducts, category: { categories, loading } }) => {
+const Search = ({ getCategories, getSearchProducts, category: { categories, loading }, product }) => {
   const [data, setData] = useState({
     categories: [],
     category: '',
@@ -62,12 +62,7 @@ const Search = ({ getCategories, getSearchProducts, category: { categories, load
           </select>
         </div>
         <div>
-          <input
-            type="search"
-            onChange={handleChange('search')}
-            placeholder="Search by Name"
-            autoFocus
-          />
+          <input type="search" onChange={handleChange('search')} placeholder="Search by Name" autoFocus />
         </div>
         <div>
           <input type="submit" value="search"></input>
@@ -77,15 +72,8 @@ const Search = ({ getCategories, getSearchProducts, category: { categories, load
   );
 
   const searchedProducts = (results = []) => {
-    return (
-      <div>
-        {results &&
-          results.data &&
-          results.data.map(product => <Card product={product} key={product._id}></Card>)}
-      </div>
-    );
+    return <div>{results && results.data && results.data.map(product => <Card product={product} key={product._id}></Card>)}</div>;
   };
-
   return (
     <div>
       <div>{searchForm()}</div>
@@ -97,10 +85,12 @@ const Search = ({ getCategories, getSearchProducts, category: { categories, load
 Search.propTypes = {
   getCategories: PropTypes.func.isRequired,
   category: PropTypes.object.isRequired,
+  product: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = state => ({
   category: state.category,
+  product: state.product,
 });
 
 export default connect(

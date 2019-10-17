@@ -7,7 +7,6 @@ const CategoryMainContainer = ({ category: { categories, loading }, getCategorie
   useEffect(() => {
     getCategories();
   }, []);
-  console.log(categories);
 
   const renderCategories = () => {
     return categories.map(c => (

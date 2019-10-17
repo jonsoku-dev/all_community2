@@ -5,12 +5,7 @@ import PropTypes from 'prop-types';
 import { createProduct } from '../../Store/Actions/product';
 import { getCategories } from '../../Store/Actions/category';
 
-const ProductCreateContainer = ({
-  history,
-  createProduct,
-  getCategories,
-  category: { loading, categories },
-}) => {
+const ProductCreateContainer = ({ history, createProduct, getCategories, category: { loading, categories } }) => {
   useEffect(() => {
     getCategories();
   }, []);

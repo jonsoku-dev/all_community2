@@ -1,5 +1,6 @@
 export const SET_ALERT = 'SET_ALERT';
 export const REMOVE_ALERT = 'REMOVE_ALERT';
+
 export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
 export const REGISTER_FAIL = 'REGISTER_FAIL';
 export const USER_LOADED = 'USER_LOADED';
@@ -7,15 +8,19 @@ export const AUTH_ERROR = 'AUTH_ERROR';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAIL = 'LOGIN_FAIL';
 export const LOGOUT = 'LOGOUT';
+
 export const GET_POSTS = 'GET_POSTS';
 export const POST_ERROR = 'POST_ERROR';
+
 export const GET_CATEGORY = 'GET_CATEGORY';
 export const GET_CATEGORIES = 'GET_CATEGORIES';
 export const CREATE_CATEGORY = 'CREATE_CATEGORY';
 export const CATEGORY_FAIL = 'CATEGORY_FAIL';
 export const PUT_CATEGORY = 'PUT_CATEGORY';
 export const DELETE_CATEGORY = 'DELETE_CATEGORY';
+
 export const CREATE_PRODUCT = 'CREATE_PRODUCT';
 export const PRODUCT_FAIL = 'PRODUCT_FAIL';
 export const GET_PRODUCT = 'GET_PRODUCT';
 export const GET_FILTERED_PRODUCTS = 'GET_FILTERED_PRODUCTS';
+export const GET_SEARCHED_PRODUCTS = 'GET_SEARCHED_PRODUCTS';
