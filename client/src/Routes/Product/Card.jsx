@@ -20,7 +20,7 @@ const Name = styled.div``;
 const Description = styled.div``;
 const Price = styled.div``;
 
-const Card = ({ product: { _id, name, description, price, photo } }) => {
+const Card = ({ product: { name, description, price, photo } }) => {
   return (
     <CardWrapper>
       <Photo>

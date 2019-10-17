@@ -7,7 +7,7 @@ import Checkbox from './Checkbox';
 import RadioBox from './RadioBox';
 import { prices } from './fixedPrices';
 import { getFilteredProducts } from '../../Store/Actions/product';
-import Card from './Card.js';
+import Card from './Card.jsx';
 
 const Wrapper = styled.div`
   display: grid;

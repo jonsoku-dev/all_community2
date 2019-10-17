@@ -3,11 +3,10 @@ import { connect } from 'react-redux';
 import { getSearchProducts } from '../../Store/Actions/product';
 import { getCategories } from '../../Store/Actions/category';
 import PropTypes from 'prop-types';
-import Card from './Card';
+import Card from './Card.jsx';
 
 const Search = ({ getCategories, getSearchProducts, category: { categories, loading }, product }) => {
   const [data, setData] = useState({
-    categories: [],
     category: '',
     search: '',
     results: [],
@@ -26,7 +25,7 @@ const Search = ({ getCategories, getSearchProducts, category: { categories, load
     });
   };
 
-  const { search, category } = data;
+  const { search, category, searched, results } = data;
 
   const searchData = async () => {
     if (search) {
@@ -71,13 +70,30 @@ const Search = ({ getCategories, getSearchProducts, category: { categories, load
     </form>
   );
 
+  const searchMessage = (searched, results) => {
+    if (searched && results.length > 0) {
+      return `found ${results.length} products`;
+    } else if (searched && results.length < 1) {
+      return `No products found`;
+    }
+  };
+
   const searchedProducts = (results = []) => {
-    return <div>{results && results.data && results.data.map(product => <Card product={product} key={product._id}></Card>)}</div>;
+    return (
+      <div>
+        <div>{searchMessage(searched, results)}</div>
+        <div>
+          {results.map(product => (
+            <Card product={product} key={product._id}></Card>
+          ))}
+        </div>
+      </div>
+    );
   };
   return (
     <div>
       <div>{searchForm()}</div>
-      <div>{searchedProducts(data.results.data)}</div>
+      <div>{searchedProducts(results.data)}</div>
     </div>
   );
 };
