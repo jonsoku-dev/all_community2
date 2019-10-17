@@ -3,6 +3,7 @@ import queryString from 'query-string';
 import { setAlert } from './alert';
 import {
   PRODUCT_FAIL,
+  CREATE_PRODUCT,
   GET_PRODUCT,
   GET_FILTERED_PRODUCTS,
   GET_SEARCHED_PRODUCTS,
@@ -17,6 +18,12 @@ export const createProduct = (form, history) => async dispatch => {
   };
   try {
     const res = await axios.post('http://localhost:4000/api/product', form, config);
+    dispatch({
+      type: CREATE_PRODUCT,
+      payload: res.data,
+    });
+    dispatch(setAlert('Product 가 생성되었습니다. ', 'success'));
+    return res.data;
   } catch (err) {
     console.error(err);
     dispatch({

@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { getProduct, getProductsRelated } from '../../Store/Actions/product';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Card from './Card';
 import styled from 'styled-components';
@@ -17,6 +18,7 @@ const Related = styled.div`
 `;
 
 const ProductContainer = ({
+  history,
   getProduct,
   getProductsRelated,
   match,
@@ -61,4 +63,4 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   { getProduct, getProductsRelated },
-)(ProductContainer);
+)(withRouter(ProductContainer));
