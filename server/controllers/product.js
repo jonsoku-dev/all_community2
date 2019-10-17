@@ -6,7 +6,7 @@ const { validationResult } = require('express-validator');
 
 exports.productById = async (req, res, next, id) => {
   try {
-    const product = await Product.findById(id).exec();
+    const product = await Product.findById(id).populate('category');
     req.product = product;
     next();
   } catch (err) {

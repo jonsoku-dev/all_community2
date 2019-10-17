@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import SignupPresenter from './SignupPresenter';
+import SignupPresenter from './SignupPresenter.jsx';
 import { setAlert } from '../../Store/Actions/alert';
 import { signup } from '../../Store/Actions/auth';
 import { Redirect } from 'react-router-dom';

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import LoginPresenter from './LoginPresenter';
+import LoginPresenter from './LoginPresenter.jsx';
 import { setAlert } from '../../Store/Actions/alert';
 import { login } from '../../Store/Actions/auth';
 import { Redirect } from 'react-router-dom';
@@ -31,7 +31,14 @@ const LoginContainer = ({ login, isAuthenticated }) => {
     login(email, password);
   };
 
-  return <LoginPresenter email={email} password={password} handleInput={handleInput} handleSubmit={handleSubmit} />;
+  return (
+    <LoginPresenter
+      email={email}
+      password={password}
+      handleInput={handleInput}
+      handleSubmit={handleSubmit}
+    />
+  );
 };
 
 LoginContainer.propTypes = {

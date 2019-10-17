@@ -1,3 +1,3 @@
-import SignupContainer from './SignupContainer';
+import SignupContainer from './SignupContainer.jsx';
 
 export { SignupContainer };

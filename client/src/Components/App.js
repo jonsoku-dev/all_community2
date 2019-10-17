@@ -19,7 +19,12 @@ import { LoginContainer } from '../Routes/Login';
 import { SignupContainer } from '../Routes/Signup';
 import { PostContainer } from '../Routes/Post';
 import { CategoryContainer, CategoryPutContainer } from '../Routes/Category';
-import { ProductHomeContainer, ProductCreateContainer, ProductFilterContainer } from '../Routes/Product';
+import {
+  ProductContainer,
+  ProductHomeContainer,
+  ProductCreateContainer,
+  ProductFilterContainer,
+} from '../Routes/Product';
 import { AdminContainer } from '../Routes/Admin';
 
 const Container = styled.div`
@@ -54,6 +59,7 @@ const App = () => {
               <Route exact path="/product" component={ProductHomeContainer}></Route>
               <Route exact path="/product/filter" component={ProductFilterContainer}></Route>
               <Route exact path="/product/create" component={ProductCreateContainer}></Route>
+              <Route exact path="/product/:productId" component={ProductContainer}></Route>
               <Route path="/admin" component={AdminContainer}></Route>
               <Redirect from="*" to="/" />
             </Switch>

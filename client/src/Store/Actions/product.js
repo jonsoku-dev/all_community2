@@ -1,7 +1,13 @@
 import axios from 'axios';
 import queryString from 'query-string';
 import { setAlert } from './alert';
-import { PRODUCT_FAIL, GET_FILTERED_PRODUCTS, GET_SEARCHED_PRODUCTS } from './types';
+import {
+  PRODUCT_FAIL,
+  GET_PRODUCT,
+  GET_FILTERED_PRODUCTS,
+  GET_SEARCHED_PRODUCTS,
+  GET_RELATED_PRODUCTS,
+} from './types';
 
 export const createProduct = (form, history) => async dispatch => {
   const config = {
@@ -13,7 +19,28 @@ export const createProduct = (form, history) => async dispatch => {
     const res = await axios.post('http://localhost:4000/api/product', form, config);
   } catch (err) {
     console.error(err);
-    //
+    dispatch({
+      type: PRODUCT_FAIL,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
+
+export const getProduct = productId => async dispatch => {
+  console.log(productId);
+  try {
+    const res = await axios.get(`http://localhost:4000/api/product/${productId}`);
+    dispatch({
+      type: GET_PRODUCT,
+      payload: res.data,
+    });
+    return res.data;
+  } catch (err) {
+    console.error(err);
+    dispatch({
+      type: PRODUCT_FAIL,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
   }
 };
 
@@ -33,10 +60,10 @@ export const getFilteredProducts = (skip, limit, filters = {}) => async dispatch
     return res.data;
   } catch (err) {
     console.error(err);
-    // dispatch({
-    //   type: PRODUCT_FAIL,
-    //   payload: { msg: err.response.statusText, status: err.response.status },
-    // });
+    dispatch({
+      type: PRODUCT_FAIL,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
   }
 };
 
@@ -51,9 +78,26 @@ export const getSearchProducts = params => async dispatch => {
     return res.data;
   } catch (err) {
     console.error(err);
-    // dispatch({
-    //   type: PRODUCT_FAIL,
-    //   payload: { msg: err.response.statusText, status: err.response.status },
-    // });
+    dispatch({
+      type: PRODUCT_FAIL,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
+
+export const getProductsRelated = productId => async dispatch => {
+  try {
+    const res = await axios.get(`http://localhost:4000/api/product/related/${productId}`);
+    dispatch({
+      type: GET_RELATED_PRODUCTS,
+      payload: res.data,
+    });
+    return res.data;
+  } catch (err) {
+    console.error(err);
+    dispatch({
+      type: PRODUCT_FAIL,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
   }
 };

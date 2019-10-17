@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { getCategories } from '../../Store/Actions/category';
 import PropTypes from 'prop-types';
-import Checkbox from './Checkbox';
-import RadioBox from './RadioBox';
+import Checkbox from './Checkbox.jsx';
+import RadioBox from './RadioBox.jsx';
 import { prices } from './fixedPrices';
 import { getFilteredProducts } from '../../Store/Actions/product';
 import Card from './Card.jsx';
@@ -23,7 +23,12 @@ const Main = styled.div`
   grid-gap: 1rem;
 `;
 
-const ProductFilterContainer = ({ getCategories, getFilteredProducts, category: { categories, loading }, product: { products } }) => {
+const ProductFilterContainer = ({
+  getCategories,
+  getFilteredProducts,
+  category: { categories, loading },
+  product: { products },
+}) => {
   const [myFilters, setMyFilters] = useState({
     filters: { category: [], price: [], name: '' },
   });
@@ -86,22 +91,25 @@ const ProductFilterContainer = ({ getCategories, getFilteredProducts, category: 
       <LeftSideBar>
         <h4>Filter by categories</h4>
         <ul>
-          <Checkbox categories={categories} handleFilters={filters => handleFilters(filters, 'category')}></Checkbox>
+          <Checkbox
+            categories={categories}
+            handleFilters={filters => handleFilters(filters, 'category')}
+          ></Checkbox>
         </ul>
 
         <h4>Filter by prices</h4>
         <ul>
-          <RadioBox prices={prices} handleFilters={filters => handleFilters(filters, 'price')}></RadioBox>
+          <RadioBox
+            prices={prices}
+            handleFilters={filters => handleFilters(filters, 'price')}
+          ></RadioBox>
         </ul>
       </LeftSideBar>
       <Main>
-        {!loading && filteredResulted && filteredResulted.map(product => <Card key={product._id} product={product}></Card>)}
+        {!loading &&
+          filteredResulted &&
+          filteredResulted.map(product => <Card key={product._id} product={product}></Card>)}
         {loadMoreButton()}
-        {/* {JSON.stringify(filteredResulted)} */}
-        {/* {!loading &&
-          products &&
-          products.data &&
-          products.data.map((product, i) => <Card key={i} product={product}></Card>)} */}
       </Main>
     </Wrapper>
   );
